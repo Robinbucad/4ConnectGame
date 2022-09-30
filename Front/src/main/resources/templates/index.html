@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>4Connect</title>
+    <link th:href="@{/style.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/script.js}"></script>
+</head>
+<body>
+
+    <div class="title-container">
+        <h1 th:text="${titleGame}"></h1>
+    </div>
+
+    <main>
+
+        <section class="inputs-container">
+            <div class="divsInputs-container">
+                <div class="creator-container">
+                    <input id="player1" class="input-user" type="text" placeholder="Usuario 1"/>
+                    <button class="btn-create" id="btn" th:onclick="fetchPlayer1()">Crear</button>
+                </div>
+
+                <div id="formTable" style="display:none">
+                    <input class="input-user" id="player2" type="text" placeholder="Usuario 2"/>
+                    <input class="input-user" id="gameId" type="text" placeholder="Id tablero"/>
+                    <button class="btn-create" id="btnJoin" th:onclick="fetchPlayer2()" type="submit">Conectar</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="board-container">
+            <div class="board">
+                <div class="column">
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                </div>
+
+                <div class="column">
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                </div>
+
+                <div class="column">
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                </div>
+
+                <div class="column">
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                </div>
+
+                <div class="column">
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                </div>
+
+                <div class="column">
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                </div>
+
+                <div class="column">
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                    <div class="circle-game"></div>
+                </div>
+                
+                
+            </div>
+            
+            <div>
+                <div class="opts-container">
+                    <div class="turn-section">
+                        <p th:text="${turn}">Turno</p>
+                    </div>
+
+                    <button th:text="${newGame}" class="new-game"></button>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+      
+
+
+    </main>
+
+</body>
+</html>
