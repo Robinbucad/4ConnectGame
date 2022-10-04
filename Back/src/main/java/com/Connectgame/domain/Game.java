@@ -9,11 +9,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import java.util.UUID;
+
 @Table(name = "games")
 @Data
 public class Game {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String player1;
     private String player2;
@@ -25,7 +30,7 @@ public class Game {
         setPlayer1(player.getName());
         setPlayer2(null);
         setGameStatus(GameStatus.NEW);
-        setBoard(new int[3][3]);
+        setBoard(new int[7][6]);
         setWinner(null);
     }
 

@@ -8,6 +8,12 @@ body {
     justify-content: center;
 }
 
+.main-connect-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .title-container > h1 {
     background:darkblue;
     font-weight: bold;
@@ -19,16 +25,12 @@ body {
     border-radius: 10px;
 }
 
-#formTable {
- display:none;
-}
-
 .inputs-container {
     display: flex;
     justify-content: center;
     background:darkblue;
     font-weight: bold;
-    padding: 0.4rem;
+    padding: 0.3rem;
     color: white;
     border: 4px gray solid;
     border-radius: 10px;
@@ -63,9 +65,9 @@ body {
     background:lightblue;
     border: 8px darkblue solid;
     border-radius: 10px;
-    height: 525px;
+    height: 580px;
     flex-wrap: wrap;
-    width: 644px;
+    width: 688px;
     float: left;
 }
 
@@ -125,4 +127,14 @@ body {
 
 .btn-join{
     background: red;
+}
+
+
+.btn-col{
+    background-color: yellow;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 8px;
+    margin-right: 10px;
+    cursor: pointer;
 }

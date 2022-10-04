@@ -17,6 +17,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class GameServiceImpl implements GameService{
@@ -38,7 +39,7 @@ public class GameServiceImpl implements GameService{
                     return boardRepository.save(g);
                 })
                 .flatMap(req -> playersRepository.save(new Player(player)))
-                .map(p -> new GameOutputDTO(new Game(player)));
+                .map(p -> new GameOutputDTO(game));
 
     }
 
@@ -55,10 +56,12 @@ public class GameServiceImpl implements GameService{
                     return boardRepository.save(g);
                 })
                 .flatMap(p -> playersRepository.findByName(player2.getName())
-                        .switchIfEmpty(playersRepository.save(new Player(player2))));
+                        .switchIfEmpty(playersRepository.save(new Player(player2))))
+                .map(p -> boardRepository.findByPlayer2(p.getName()).doOnNext(g -> new GameOutputDTO(g)));
+
     }
 
-    public Mono<Game> gameplay(GamePlay gamePlay){
+    public Mono<Game> gameLogic(GamePlay gamePlay){
 
         return boardRepository.findById(gamePlay.getGameId())
                 .switchIfEmpty(Mono.error(new NotFoundException("Partido no existe")))

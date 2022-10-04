@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>4Connect</title>
     <link th:href="@{/style.css}" rel="stylesheet">
-    <script type="text/javascript" th:src="@{/script.js}"></script>
+    <script type="text/javascript" th:src="@{/scripts.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head>
 <body>
 
@@ -17,12 +19,11 @@
         <section class="inputs-container">
             <div class="divsInputs-container">
                 <div class="creator-container">
-                    <input id="player1" class="input-user" type="text" placeholder="Usuario 1"/>
+                    <input id="player" class="input-user" type="text" placeholder="Usuario 1"/>
                     <button class="btn-create" id="btn" th:onclick="fetchPlayer1()">Crear</button>
                 </div>
 
-                <div id="formTable" style="display:none">
-                    <input class="input-user" id="player2" type="text" placeholder="Usuario 2"/>
+                <div id="formTable">
                     <input class="input-user" id="gameId" type="text" placeholder="Id tablero"/>
                     <button class="btn-create" id="btnJoin" th:onclick="fetchPlayer2()" type="submit">Conectar</button>
                 </div>
@@ -31,73 +32,110 @@
         </section>
 
         <section class="board-container">
+
             <div class="board">
-                <div class="column">
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
+                <div>
+                    <div th:onclick="moveUser()" class="btn-col">
+                        <p>Columna 1</p>
+                    </div>
+                    <div class="column">
+                        <div id="1" class="circle-game" style="background: white"></div>
+                        <div id="2" class="circle-game" style="background: white"></div>
+                        <div id="3" class="circle-game" style="background: white"></div>
+                        <div id="4" class="circle-game" style="background: white"></div>
+                        <div id="5" class="circle-game" style="background: white"></div>
+                        <div id="6" class="circle-game" style="background: white"></div>
+                    </div>
                 </div>
 
-                <div class="column">
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
+
+                <div>
+                    <div class="btn-col">
+                        <p>Columna 2</p>
+                    </div>
+                    <div class="column">
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                    </div>
                 </div>
 
-                <div class="column">
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
+                <div>
+                    <div class="btn-col">
+                        <p>Columna 3</p>
+                    </div>
+                    <div class="column">
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                    </div>
                 </div>
 
-                <div class="column">
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
+                <div>
+                    <div class="btn-col">
+                        <p>Columna 4</p>
+                    </div>
+                    <div class="column">
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                    </div>
                 </div>
 
-                <div class="column">
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
+                <div>
+                    <div class="btn-col">
+                        <p>Columna 5</p>
+                    </div>
+                    <div class="column">
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                    </div>
                 </div>
 
-                <div class="column">
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
+                <div>
+                    <div class="btn-col">
+                        <p>Columna 6</p>
+                    </div>
+                    <div class="column">
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                    </div>
                 </div>
 
-                <div class="column">
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
-                    <div class="circle-game"></div>
+                <div>
+                    <div class="btn-col">
+                        <p>Columna 7</p>
+                    </div>
+                    <div class="column">
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                        <div class="circle-game"></div>
+                    </div>
                 </div>
-                
-                
+
+
             </div>
-            
+
             <div>
                 <div class="opts-container">
                     <div class="turn-section">
@@ -113,9 +151,6 @@
             </div>
 
         </section>
-
-      
-
 
     </main>
 

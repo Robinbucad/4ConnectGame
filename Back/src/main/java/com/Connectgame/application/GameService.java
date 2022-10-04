@@ -13,6 +13,6 @@ public interface GameService {
     Mono<GameOutputDTO> createGame(PlayerInputDTO player);
     Flux<Game> getGames();
     Mono<Object> connectToGame(PlayerInputDTO player2, int gameId);
-    Mono<Game> gameplay(GamePlay gamePlay);
+    Mono<Game> gameLogic(GamePlay gamePlay);
 
 }

@@ -48,8 +48,8 @@ public class GameController {
     public Mono<Game> gameplay(@RequestBody GamePlay request){
         log.info("gameplay: {}",request);
 
-        simpMessagingTemplate.convertAndSend("/topic/game-progress/" + request.getGameId(),gameService.gameplay(request));
-        return gameService.gameplay(request);
+        simpMessagingTemplate.convertAndSend("/topic/game-progress/" + request.getGameId(),gameService.gameLogic(request));
+        return gameService.gameLogic(request);
     }
 
 }
